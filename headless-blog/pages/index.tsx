@@ -6,6 +6,7 @@ import { Box, Typography } from "@mui/material";
 import JimmyHendrixIcon from "@/public/Icons/JimmyHendrix";
 import NavBar from "@/Componenets/Navbar";
 import Home from "./Home";
+import { ApolloProvider } from "@apollo/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main>
         <Home />
       </main>
