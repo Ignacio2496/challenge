@@ -1,7 +1,7 @@
 # GTR-blog
 This blog is about guitars
 
-Headless blog using NextJS
+Headless blog using NextJS and React JS
 
 
-<img src="https://camo.githubusercontent.com/..." data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
+![image](https://user-images.githubusercontent.com/69904532/225326699-1999a05e-e1b3-4e2c-ab2f-eeb30c0c7671.png)
