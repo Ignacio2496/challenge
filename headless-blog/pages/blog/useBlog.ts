@@ -7,6 +7,7 @@ const useBlog = () => {
 
   useQuery(Posts, {
     onCompleted(data) {
+      console.log(data.posts);
       setPostsData(data.posts.nodes);
     },
   });

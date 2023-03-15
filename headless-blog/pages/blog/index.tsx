@@ -1,3 +1,4 @@
+import PostCard from "@/Componenets/PostCard";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
@@ -5,17 +6,30 @@ import useBlog from "./useBlog";
 
 const Blog = () => {
   const { PostsData } = useBlog();
-  console.log("posts", PostsData?.posts?.nodes.title);
   return (
-    <Box>
+    <Box height={"1000px"}>
       <Typography>This is a blog</Typography>
-      <ul>
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 5,
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {PostsData?.map((post: any) => (
           <Link key={post.title} href={`/${post.id}`}>
-            <Typography>{post.date}</Typography>
+            <PostCard
+              date={post.date}
+              description={post.description}
+              img={post.featuredImage.node.sourceUrl}
+              title={post.title}
+            />
           </Link>
         ))}
-      </ul>
+      </Box>
     </Box>
   );
 };

@@ -4,9 +4,13 @@ export const Posts = gql`
   query NewQuery {
     posts {
       nodes {
-        title
-        id
         date
+        id
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
       }
     }
   }
