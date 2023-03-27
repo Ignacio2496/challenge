@@ -1,8 +1,18 @@
-import { Box, Typography } from "@mui/material";
+import { useAuthContext } from "@/context/AuthContext";
+import { Box, Button, Typography } from "@mui/material";
+import { deleteCookie, getCookie } from "cookies-next";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
 const NavBar = () => {
+  const { push } = useRouter();
+
+  const logoutCookie = () => {
+    deleteCookie("userToken");
+    push("/login");
+  };
+
   return (
     <Box
       sx={{
@@ -16,19 +26,25 @@ const NavBar = () => {
       }}
     >
       <Box>
-        <Link href={"/blog"}>
-          <Typography color="black">BLOG</Typography>
+        <Link href={"/create"}>
+          <Button>
+            <Typography color="black">Create</Typography>
+          </Button>
         </Link>
       </Box>
       <Box>
-        <Link href={"/tuvieja"}>
-          <Typography color="black">Information</Typography>
-        </Link>
+        <Button>
+          <Link href={"/blog"}>
+            <Typography color="black">BLOG</Typography>
+          </Link>
+        </Button>
       </Box>
       <Box>
-        <Link href={"/tuvieja"}>
-          <Typography color="black">About me</Typography>
-        </Link>
+        <Button>
+          <Typography onClick={logoutCookie} color="black">
+            LOG OUT
+          </Typography>
+        </Button>
       </Box>
     </Box>
   );

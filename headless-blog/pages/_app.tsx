@@ -1,17 +1,19 @@
+import Layout from "@/Componenets/Layout";
+import AuthProvider from "@/context/AuthContext";
 import "@/styles/globals.css";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { ApolloServer } from "@apollo/server";
 import type { AppProps } from "next/app";
-
-const client = new ApolloClient({
-  uri: "http://localhost/wordpress/graphql",
-  cache: new InMemoryCache(),
-});
+import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient();
   return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }

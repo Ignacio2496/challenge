@@ -7,35 +7,48 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useRouter } from "next/router";
 import React from "react";
 
 type PostCardType = {
-  img: any;
+  img?: any;
   title: string;
   date: string;
   description: string;
+  id: string;
 };
 
-const PostCard = ({ date, description, img, title }: PostCardType) => {
+const PostCard = ({ date, description, title, id }: PostCardType) => {
+  const { push } = useRouter();
   return (
     <Box>
-      <Card>
-        <CardMedia component="img" height="300px" width="280px" image={img} />
-
+      <Card
+        sx={{
+          minWidth: 275,
+          height: 150,
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography textAlign={"center"} variant="h5" component="div">
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {date}
-          </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            variant="contained"
+            onClick={() => push(`/${id}`)}
+            size="small"
+          >
+            Show more
+          </Button>
         </CardActions>
       </Card>
     </Box>
