@@ -1,5 +1,5 @@
 # GTR-blog
-This blog is about guitars
+
 
 Headless blog using NextJS and React JS
 
