@@ -1,14 +1,26 @@
 import useDeletePost from "@/hooks/useDeletePost";
-import { Box, Button, Typography } from "@mui/material";
-import { getCookie } from "cookies-next";
-import { useRouter } from "next/router";
+import {
+  Box,
+  Button,
+  SelectChangeEvent,
+  TextField,
+  Typography,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import useEditPost from "@/hooks/useEditPost";
+import { useState } from "react";
+import useCreatePost from "@/hooks/useCreatePost";
 
 const IndividualPost = ({ post }: { post: any }) => {
   const myHtml = `<div style="color: red; fontSize: 20px;">${post.content.rendered}</div`;
   const { deletePost } = useDeletePost();
-  const { push } = useRouter();
-  const cookie = getCookie("userToken");
-  const checkToken = (token: string) => (token ? "do nothing" : push("/login"));
+  const [isEditActive, setIsEditActive] = useState<boolean>(false);
+  const { form } = useCreatePost();
+
+  const handleDelte = () => {
+    deletePost(post.id);
+  };
 
   return (
     <Box
@@ -30,9 +42,26 @@ const IndividualPost = ({ post }: { post: any }) => {
         }}
       >
         <Box>
-          <Typography fontSize={"50px"} variant="h1">
-            {post.title.rendered}
-          </Typography>
+          {isEditActive ? (
+            <TextField
+              {...form.register("title")}
+              defaultValue={"Add your new title"}
+              color="secondary"
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              fullWidth
+              id="standard-basic"
+              label="title"
+              variant="standard"
+            />
+          ) : (
+            <Typography fontSize={"50px"} variant="h1">
+              {post.title.rendered}
+            </Typography>
+          )}
         </Box>
         <Box
           sx={{
@@ -41,7 +70,24 @@ const IndividualPost = ({ post }: { post: any }) => {
           }}
         >
           <Typography>Post description:</Typography>
-          <div dangerouslySetInnerHTML={{ __html: myHtml }}></div>
+          {isEditActive ? (
+            <TextField
+              {...form.register("content")}
+              defaultValue={"Add your new description"}
+              color="secondary"
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              fullWidth
+              id="standard-basic"
+              label="description"
+              variant="standard"
+            />
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: myHtml }}></div>
+          )}
         </Box>
         <Box
           sx={{
@@ -80,13 +126,23 @@ const IndividualPost = ({ post }: { post: any }) => {
           <Typography>{post.author}</Typography>
         </Box>
       </Box>
-      <Button
-        onClick={() => deletePost(post.id)}
-        color="error"
-        variant="contained"
+      <Box
+        sx={{
+          display: "flex",
+          gap: 3,
+        }}
       >
-        Delete post
-      </Button>
+        <Button onClick={() => handleDelte()} color="error" variant="contained">
+          <DeleteForeverIcon
+            sx={{
+              fontSize: "17px",
+            }}
+          />
+          <Typography fontSize={"13px"} ml={2}>
+            {isEditActive ? "Cancel Edit" : "Delete post"}
+          </Typography>
+        </Button>
+      </Box>
     </Box>
   );
 };

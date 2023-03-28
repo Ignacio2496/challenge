@@ -9,7 +9,9 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import React from "react";
-
+import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 type PostCardType = {
   img?: any;
   title: string;
@@ -24,11 +26,16 @@ const PostCard = ({ date, description, title, id }: PostCardType) => {
     <Box>
       <Card
         sx={{
-          minWidth: 275,
-          height: 150,
+          minWidth: 300,
+          height: 200,
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
+          transition: "all ease-in-out 0.2s",
+          "&:hover": {
+            boxShadow: "1px 1px 10px 1px rgba(228, 217, 217, 0.7)",
+            transform: "translateY(-10px)",
+          },
         }}
       >
         <CardContent>
@@ -40,6 +47,7 @@ const PostCard = ({ date, description, title, id }: PostCardType) => {
           sx={{
             display: "flex",
             justifyContent: "center",
+            gap: 2,
           }}
         >
           <Button
@@ -47,7 +55,31 @@ const PostCard = ({ date, description, title, id }: PostCardType) => {
             onClick={() => push(`/${id}`)}
             size="small"
           >
-            Show more
+            <VisibilityIcon
+              sx={{
+                fontSize: "17px",
+              }}
+            />
+            <Typography fontSize={"13px"} ml={2}>
+              View post
+            </Typography>
+          </Button>
+
+          <Button
+            onClick={() => push(`/edit/${id}`)}
+            variant="contained"
+            color="success"
+            type="submit"
+          >
+            <EditIcon
+              sx={{
+                fontSize: "17px",
+              }}
+            />
+
+            <Typography fontSize={"13px"} ml={2}>
+              Edit Post
+            </Typography>
           </Button>
         </CardActions>
       </Card>

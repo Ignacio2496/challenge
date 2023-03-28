@@ -36,6 +36,11 @@ const useLogin = () => {
 
     onError: (data) => {},
     onSuccess: (data) => {
+      setCookie("userToken", data.token, {
+        path: "/",
+        maxAge: 30 * 24 * 60 * 60,
+      });
+
       push("/blog");
     },
   });
@@ -44,7 +49,7 @@ const useLogin = () => {
     logInFetch as (data: LoginForm) => void
   );
 
-  return { form, handleSubmit };
+  return { form, handleSubmit, isLogInLoading };
 };
 
 export default useLogin;

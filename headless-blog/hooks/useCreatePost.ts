@@ -28,7 +28,7 @@ const useCreatePost = () => {
   const { push } = useRouter();
   const cookie = getCookie("userToken");
 
-  const { mutate: postImage, isLoading: isCreatePostLoading } = useMutation({
+  const { mutate: postData, isLoading: isCreatePostLoading } = useMutation({
     mutationFn: async (postData: CreatePostForm) => {
       const { data: response } = await axios({
         url: `http://localhost/wordpress/wp-json/wp/v2/posts`,
@@ -38,6 +38,7 @@ const useCreatePost = () => {
           Authorization: `Bearer ${cookie}`,
         },
       });
+      console.log("post", postData);
       return response;
     },
 
@@ -50,7 +51,7 @@ const useCreatePost = () => {
   });
 
   const handleSubmit = form.handleSubmit(
-    postImage as (data: CreatePostForm) => void
+    postData as (data: CreatePostForm) => void
   );
 
   return { form, handleSubmit };

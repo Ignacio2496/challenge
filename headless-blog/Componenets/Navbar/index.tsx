@@ -10,19 +10,20 @@ const NavBar = () => {
 
   const logoutCookie = () => {
     deleteCookie("userToken");
-    push("/login");
+    push("/");
   };
 
   return (
     <Box
       sx={{
-        bgcolor: "white",
+        bgcolor: "grey",
         width: "100%",
         height: "50px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        px: 10,
+        position: "fixed",
+        p: 2,
       }}
     >
       <Box>
