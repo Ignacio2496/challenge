@@ -30,7 +30,7 @@ const IndividualPost = ({ post }: { post: any }) => {
           bgcolor: "#1010105f",
           gap: 3,
           p: 3,
-          width: "50%",
+          width: { xs: "95%", md: "50%" },
           borderRadius: "10px",
         }}
       >

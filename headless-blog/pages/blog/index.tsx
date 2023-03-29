@@ -9,7 +9,7 @@ const Blog = ({ posts }: { posts: any }) => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        height: { xs: "200vh", md: "100vh" },
+        height: { xs: "fit-content", md: "100vh" },
         backgroundImage: `url("/Images/blog2.jpg")`,
         backgroundSize: "cover",
       }}

@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   FormControl,
+  InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -71,42 +72,32 @@ const EditPost = ({ post }: { post: any }) => {
           gap: 2,
           p: 5,
           width: { xs: "98%", md: "50%" },
-          background: "#e7e5e5",
           borderRadius: "10px",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography color="black" variant="h3">
-            Edit Post
-          </Typography>
-        </Box>
         <Box>
-          <Typography color="black" mb={1}>
-            Title
-          </Typography>
           <TextField
+            label="title"
             defaultValue={post.title.rendered}
             fullWidth
             {...form.register("title")}
             sx={{
               color: "white",
               border: "white",
+              bgcolor: "rgba(181, 181, 181, 0.765)",
             }}
             id="outlined-basic"
             variant="outlined"
           />
         </Box>
         <Box>
-          <Typography color="black" mb={1}>
-            Content
-          </Typography>
           <TextField
+            sx={{
+              color: "white",
+              border: "white",
+              bgcolor: "rgba(181, 181, 181, 0.765)",
+            }}
+            label="content"
             defaultValue={"Edit your content here"}
             fullWidth
             {...form.register("content")}
@@ -116,11 +107,13 @@ const EditPost = ({ post }: { post: any }) => {
         </Box>
 
         <Box>
-          <Typography color="black" mb={1}>
-            Status
-          </Typography>
+          <InputLabel id="demo-simple-select-label">Status</InputLabel>
           <FormControl fullWidth>
             <Select
+              sx={{
+                border: "white",
+                bgcolor: "rgba(181, 181, 181, 0.765)",
+              }}
               {...form.register("status")}
               labelId="demo-simple-select-label"
               id="demo-simple-select"

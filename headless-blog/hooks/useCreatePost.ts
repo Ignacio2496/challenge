@@ -1,4 +1,3 @@
-import React from "react";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -6,7 +5,6 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
-import { v4 as uuidv4 } from "uuid";
 
 type CreatePostForm = {
   title: string;
