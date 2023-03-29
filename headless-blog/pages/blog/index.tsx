@@ -3,16 +3,31 @@ import { Box, Typography } from "@mui/material";
 
 const Blog = ({ posts }: { posts: any }) => {
   return (
-    <Box height={"1000px"}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        height: { xs: "200vh", md: "100vh" },
+        backgroundImage: `url("/Images/blog2.jpg")`,
+        backgroundSize: "cover",
+      }}
+    >
       <Box
         sx={{
+          width: "80%",
           display: "flex",
           alignContent: "center",
           justifyContent: "center",
-          p: 5,
+          borderBottom: "1px solid #f1f1f1ab",
         }}
       >
-        <Typography variant="h2">Posts</Typography>
+        <Box>
+          <Typography color="#e2e2e2e4" variant="h2">
+            Blog
+          </Typography>
+        </Box>
       </Box>
 
       <Box

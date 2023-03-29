@@ -1,22 +1,10 @@
 import useDeletePost from "@/hooks/useDeletePost";
-import {
-  Box,
-  Button,
-  SelectChangeEvent,
-  TextField,
-  Typography,
-} from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import { Box, Button, List, ListItem, Typography } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import useEditPost from "@/hooks/useEditPost";
-import { useState } from "react";
-import useCreatePost from "@/hooks/useCreatePost";
 
 const IndividualPost = ({ post }: { post: any }) => {
-  const myHtml = `<div style="color: red; fontSize: 20px;">${post.content.rendered}</div`;
+  const myHtml = `<div style="color: "#fffafad2";fontSize: 30px;">${post.content.rendered}</div`;
   const { deletePost } = useDeletePost();
-  const [isEditActive, setIsEditActive] = useState<boolean>(false);
-  const { form } = useCreatePost();
 
   const handleDelte = () => {
     deletePost(post.id);
@@ -30,102 +18,104 @@ const IndividualPost = ({ post }: { post: any }) => {
         gap: 5,
         alignItems: "center",
         flexDirection: "column",
-
         height: "100vh",
+        backgroundImage: `url("/Images/blog4.jpg")`,
+        backgroundSize: "cover",
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
+          bgcolor: "#1010105f",
           gap: 3,
+          p: 3,
+          width: "50%",
+          borderRadius: "10px",
         }}
       >
-        <Box>
-          {isEditActive ? (
-            <TextField
-              {...form.register("title")}
-              defaultValue={"Add your new title"}
-              color="secondary"
-              inputProps={{
-                style: {
-                  color: "white",
-                },
-              }}
-              fullWidth
-              id="standard-basic"
-              label="title"
-              variant="standard"
-            />
-          ) : (
-            <Typography fontSize={"50px"} variant="h1">
+        <List component="nav" aria-label="mailbox folders">
+          <Box>
+            <Typography
+              textAlign={"center"}
+              mb={5}
+              color="#fffafad2"
+              fontSize={60}
+              variant="h1"
+            >
               {post.title.rendered}
             </Typography>
-          )}
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-          }}
-        >
-          <Typography>Post description:</Typography>
-          {isEditActive ? (
-            <TextField
-              {...form.register("content")}
-              defaultValue={"Add your new description"}
-              color="secondary"
-              inputProps={{
-                style: {
-                  color: "white",
-                },
+          </Box>
+
+          <ListItem button>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
               }}
-              fullWidth
-              id="standard-basic"
-              label="description"
-              variant="standard"
-            />
-          ) : (
-            <div dangerouslySetInnerHTML={{ __html: myHtml }}></div>
-          )}
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-          }}
-        >
-          <Typography>Post status:</Typography>
-          <Typography>{post.status}</Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-          }}
-        >
-          <Typography>Publication date: </Typography>
-          <Typography>{post.date}</Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-          }}
-        >
-          <Typography>Post ID:</Typography>
-          <Typography>{post.id}</Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            gap: 1,
-          }}
-        >
-          <Typography>Author:</Typography>
-          <Typography>{post.author}</Typography>
-        </Box>
+            >
+              <Typography fontWeight={700} color="#fffafad2">
+                Post description:
+              </Typography>
+
+              <div dangerouslySetInnerHTML={{ __html: myHtml }}></div>
+            </Box>
+          </ListItem>
+          <ListItem button>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+              }}
+            >
+              <Typography fontWeight={700} color="#fffafad2">
+                Post status:
+              </Typography>
+              <Typography color="#fffafad2">{post.status}</Typography>
+            </Box>
+          </ListItem>
+          <ListItem button>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+              }}
+            >
+              <Typography fontWeight={700} color="#fffafad2">
+                Publication date:{" "}
+              </Typography>
+              <Typography color="#fffafad2">{post.date}</Typography>
+            </Box>
+          </ListItem>
+          <ListItem button>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+              }}
+            >
+              <Typography fontWeight={700} color="#fffafad2">
+                Post ID:
+              </Typography>
+              <Typography color="#fffafad2">{post.id}</Typography>
+            </Box>
+          </ListItem>
+          <ListItem button>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+              }}
+            >
+              <Typography fontWeight={700} color="#fffafad2">
+                Author:
+              </Typography>
+              <Typography color="#fffafad2">{post.author}</Typography>
+            </Box>
+          </ListItem>
+        </List>
       </Box>
+
       <Box
         sx={{
           display: "flex",
@@ -139,7 +129,7 @@ const IndividualPost = ({ post }: { post: any }) => {
             }}
           />
           <Typography fontSize={"13px"} ml={2}>
-            {isEditActive ? "Cancel Edit" : "Delete post"}
+            Delete post
           </Typography>
         </Button>
       </Box>

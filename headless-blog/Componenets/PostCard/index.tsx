@@ -33,7 +33,7 @@ const PostCard = ({ date, description, title, id }: PostCardType) => {
           flexDirection: "column",
           transition: "all ease-in-out 0.2s",
           "&:hover": {
-            boxShadow: "1px 1px 10px 1px rgba(228, 217, 217, 0.7)",
+            boxShadow: "1px 1px 10px 1px rgba(54, 52, 52, 0.7)",
             transform: "translateY(-10px)",
           },
         }}
@@ -61,7 +61,7 @@ const PostCard = ({ date, description, title, id }: PostCardType) => {
               }}
             />
             <Typography fontSize={"13px"} ml={2}>
-              View post
+              View
             </Typography>
           </Button>
 
@@ -78,7 +78,7 @@ const PostCard = ({ date, description, title, id }: PostCardType) => {
             />
 
             <Typography fontSize={"13px"} ml={2}>
-              Edit Post
+              Edit
             </Typography>
           </Button>
         </CardActions>

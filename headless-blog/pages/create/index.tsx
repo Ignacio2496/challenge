@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   FormControl,
+  InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -28,8 +29,9 @@ const CreatePost = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "100%",
+        height: "100vh",
         flexDirection: "column",
+        bgcolor: "rgba(254, 252, 252, 0.765)",
         p: 2,
       }}
     >
@@ -40,62 +42,41 @@ const CreatePost = () => {
           justifyContent: "center",
           gap: 2,
           p: 5,
-          width: { xs: "98%", md: "50%" },
-          background: "#c7cacb",
+          width: { xs: "98%", md: "40%" },
           borderRadius: "10px",
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography color="black" variant="h3">
-            Crear Post
-          </Typography>
-        </Box>
         <Box>
-          <Typography color="black" mb={1}>
-            Title
-          </Typography>
           <TextField
             fullWidth
+            label="title"
             {...form.register("title")}
             sx={{
               color: "white",
               border: "white",
+              bgcolor: "rgba(181, 181, 181, 0.765)",
             }}
             id="outlined-basic"
             variant="outlined"
           />
         </Box>
         <Box>
-          <Typography color="black" mb={1}>
-            Content
-          </Typography>
           <TextField
-            fullWidth
-            maxLength={12}
-            inputProps={{
-              style: {
-                height: "100px",
-                display: "flex",
-                alignItems: "start",
-                justifyContent: "start",
-              },
+            sx={{
+              color: "white",
+              border: "white",
+              bgcolor: "rgba(181, 181, 181, 0.765)",
             }}
+            label="content"
             {...form.register("content")}
+            fullWidth
             id="outlined-basic"
             variant="outlined"
           />
         </Box>
 
         <Box>
-          <Typography color="black" mb={1}>
-            Status
-          </Typography>
+          <InputLabel id="demo-simple-select-label">Status</InputLabel>
           <FormControl fullWidth>
             <Select
               {...form.register("status")}
@@ -111,7 +92,7 @@ const CreatePost = () => {
         </Box>
 
         <Button type="submit" color="info" variant="contained">
-          Create text
+          Create
         </Button>
       </Box>
     </Box>

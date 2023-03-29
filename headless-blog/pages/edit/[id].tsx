@@ -1,4 +1,3 @@
-import useCreatePost from "@/hooks/useCreatePost";
 import useEditPost, { EditPostFormType } from "@/hooks/useEditPost";
 import {
   Box,
@@ -58,8 +57,9 @@ const EditPost = ({ post }: { post: any }) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        height: "100%",
+        height: "100vh",
         flexDirection: "column",
+        bgcolor: "rgba(254, 252, 252, 0.765)",
         p: 2,
       }}
     >
@@ -71,7 +71,7 @@ const EditPost = ({ post }: { post: any }) => {
           gap: 2,
           p: 5,
           width: { xs: "98%", md: "50%" },
-          background: "#c7cacb",
+          background: "#e7e5e5",
           borderRadius: "10px",
         }}
       >
@@ -109,15 +109,6 @@ const EditPost = ({ post }: { post: any }) => {
           <TextField
             defaultValue={"Edit your content here"}
             fullWidth
-            maxLength={12}
-            inputProps={{
-              style: {
-                height: "100px",
-                display: "flex",
-                alignItems: "start",
-                justifyContent: "start",
-              },
-            }}
             {...form.register("content")}
             id="outlined-basic"
             variant="outlined"
@@ -143,7 +134,7 @@ const EditPost = ({ post }: { post: any }) => {
         </Box>
 
         <Button type="submit" color="info" variant="contained">
-          Create text
+          Edit
         </Button>
       </Box>
     </Box>

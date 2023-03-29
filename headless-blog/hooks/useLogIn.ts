@@ -5,7 +5,6 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
-import { useAuthContext } from "@/context/AuthContext";
 
 type LoginForm = {
   username: string;
