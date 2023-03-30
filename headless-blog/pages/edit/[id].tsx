@@ -75,7 +75,7 @@ const EditPost = ({ post }: { post: any }) => {
         }}
       >
         <Typography
-          color={"rgba(0, 0, 0, 0.75)  "}
+          color={"rgba(0, 0, 0, 0.75) "}
           fontWeight={700}
           fontSize={"50px"}
           variant="h1"
