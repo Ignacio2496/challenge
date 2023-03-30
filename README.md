@@ -1,4 +1,4 @@
-# GTR-blog
+
 
 
 Headless blog using NextJS and React JS
