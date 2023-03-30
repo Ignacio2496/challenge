@@ -1,10 +1,11 @@
 import useDeletePost from "@/hooks/useDeletePost";
 import { Box, Button, List, ListItem, Typography } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import SuccessResponse from "@/Componenets/Toast";
 
 const IndividualPost = ({ post }: { post: any }) => {
   const myHtml = `<div style="color: "#fffafad2";fontSize: 30px;">${post.content.rendered}</div`;
-  const { deletePost } = useDeletePost();
+  const { deletePost, showSnack } = useDeletePost();
 
   const handleDelte = () => {
     deletePost(post.id);
@@ -133,6 +134,7 @@ const IndividualPost = ({ post }: { post: any }) => {
           </Typography>
         </Button>
       </Box>
+      {showSnack && <SuccessResponse message="Post successfully deleted" />}
     </Box>
   );
 };

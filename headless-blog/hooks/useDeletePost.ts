@@ -14,6 +14,7 @@ type DeletePost = {
 const useCreatePost = () => {
   const cookie = getCookie("userToken");
   const { push } = useRouter();
+  const [showSnack, setShowSnack] = useState<boolean>();
 
   const { mutate: deletePost, isLoading: isDeletingPostLoading } = useMutation({
     mutationFn: async (id: DeletePost) => {
@@ -30,11 +31,14 @@ const useCreatePost = () => {
       console.log(data);
     },
     onSuccess: (data) => {
-      push("/blog");
+      setShowSnack(true);
+      setTimeout(() => {
+        push("/blog");
+      }, 1000);
     },
   });
 
-  return { isDeletingPostLoading, deletePost };
+  return { isDeletingPostLoading, deletePost, showSnack };
 };
 
 export default useCreatePost;

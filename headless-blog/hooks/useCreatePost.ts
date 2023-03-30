@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { getCookie } from "cookies-next";
+import { useState } from "react";
 
 type CreatePostForm = {
   title: string;
@@ -25,6 +26,7 @@ const useCreatePost = () => {
 
   const { push } = useRouter();
   const cookie = getCookie("userToken");
+  const [showSnack, setShowSnack] = useState<boolean>(true);
 
   const { mutate: postData, isLoading: isCreatePostLoading } = useMutation({
     mutationFn: async (postData: CreatePostForm) => {
@@ -44,7 +46,10 @@ const useCreatePost = () => {
       console.log(data);
     },
     onSuccess: (data) => {
-      push("/blog");
+      setShowSnack(true);
+      setTimeout(() => {
+        push("/blog");
+      }, 1000);
     },
   });
 
@@ -52,7 +57,7 @@ const useCreatePost = () => {
     postData as (data: CreatePostForm) => void
   );
 
-  return { form, handleSubmit };
+  return { form, handleSubmit, showSnack };
 };
 
 export default useCreatePost;

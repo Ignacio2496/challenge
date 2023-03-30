@@ -12,6 +12,7 @@ const Blog = ({ posts }: { posts: any }) => {
         height: { xs: "fit-content", md: "100vh" },
         backgroundImage: `url("/Images/blog2.jpg")`,
         backgroundSize: "cover",
+        pt: 3,
       }}
     >
       <Box

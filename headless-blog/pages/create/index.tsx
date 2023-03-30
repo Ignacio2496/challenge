@@ -1,3 +1,4 @@
+import SuccessResponse from "@/Componenets/Toast";
 import useCreatePost from "@/hooks/useCreatePost";
 import {
   Box,
@@ -20,6 +21,7 @@ const CreatePost = () => {
   const handleChange = (event: SelectChangeEvent) => {
     setStatus(event.target.value as string);
   };
+  const { showSnack } = useCreatePost();
 
   return (
     <Box
@@ -37,13 +39,30 @@ const CreatePost = () => {
     >
       <Box
         sx={{
+          mb: 3,
+        }}
+      >
+        <Typography
+          color={"rgba(0, 0, 0, 0.75) "}
+          fontWeight={700}
+          fontSize={"50px"}
+          variant="h1"
+        >
+          Create post
+        </Typography>
+      </Box>
+      <Box
+        sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           gap: 2,
           p: 5,
-          width: { xs: "98%", md: "40%" },
-          borderRadius: "10px",
+          width: { xs: "98%", md: "50%" },
+          border: "1px solid black",
+          boxShadow: " 10px 10px 0px 2px rgba(0,0,0,0.75)",
+          webkitBoxShadow: "10px 10px 0px 2px rgba(0,0,0,0.75)",
+          mozBoxShadow: "10px 10px 0px 2px rgba(0,0,0,0.75) ",
         }}
       >
         <Box>
@@ -57,7 +76,7 @@ const CreatePost = () => {
               bgcolor: "rgba(181, 181, 181, 0.765)",
             }}
             id="outlined-basic"
-            variant="outlined"
+            variant="standard"
           />
         </Box>
         <Box>
@@ -71,7 +90,7 @@ const CreatePost = () => {
             {...form.register("content")}
             fullWidth
             id="outlined-basic"
-            variant="outlined"
+            variant="standard"
           />
         </Box>
 
@@ -95,6 +114,7 @@ const CreatePost = () => {
           Create
         </Button>
       </Box>
+      {showSnack && <SuccessResponse message="Post successfully created" />}
     </Box>
   );
 };

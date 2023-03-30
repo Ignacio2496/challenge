@@ -66,7 +66,10 @@ const LogIn = () => {
             p: 5,
             height: "60%",
             gap: 5,
-            borderRadius: "10px",
+            border: "1px solid black",
+            boxShadow: " 10px 10px 0px 2px rgba(0,0,0,0.75)",
+            webkitBoxShadow: "10px 10px 0px 2px rgba(0,0,0,0.75)",
+            mozBoxShadow: "10px 10px 0px 2px rgba(0,0,0,0.75) ",
           }}
         >
           <Typography color="primary" variant="h3">
@@ -126,7 +129,7 @@ const LogIn = () => {
                 <Typography>Loading</Typography>
               </Box>
             ) : (
-              "Login"
+              "Sign in"
             )}
           </Button>
         </Box>

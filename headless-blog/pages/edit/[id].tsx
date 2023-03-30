@@ -1,3 +1,4 @@
+import SuccessResponse from "@/Componenets/Toast";
 import useEditPost, { EditPostFormType } from "@/hooks/useEditPost";
 import {
   Box,
@@ -25,6 +26,7 @@ const EditPost = ({ post }: { post: any }) => {
     setStatus(event.target.value as string);
   };
 
+  const [showSnack, setShowSnack] = useState<boolean>();
   const { mutate: editPostForm, isLoading: isEditPostLoading } = useMutation({
     mutationFn: async (postEdit: EditPostFormType) => {
       const { data: response } = await axios({
@@ -42,7 +44,10 @@ const EditPost = ({ post }: { post: any }) => {
       console.log(data);
     },
     onSuccess: (data) => {
-      push("/blog");
+      setShowSnack(true);
+      setTimeout(() => {
+        push("/blog");
+      }, 1000);
     },
   });
 
@@ -66,13 +71,30 @@ const EditPost = ({ post }: { post: any }) => {
     >
       <Box
         sx={{
+          mb: 3,
+        }}
+      >
+        <Typography
+          color={"rgba(0, 0, 0, 0.75)  "}
+          fontWeight={700}
+          fontSize={"50px"}
+          variant="h1"
+        >
+          Edit post
+        </Typography>
+      </Box>
+      <Box
+        sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           gap: 2,
           p: 5,
           width: { xs: "98%", md: "50%" },
-          borderRadius: "10px",
+          border: "1px solid black",
+          boxShadow: " 10px 10px 0px 2px rgba(0,0,0,0.75)",
+          webkitBoxShadow: "10px 10px 0px 2px rgba(0,0,0,0.75)",
+          mozBoxShadow: "10px 10px 0px 2px rgba(0,0,0,0.75) ",
         }}
       >
         <Box>
@@ -87,7 +109,7 @@ const EditPost = ({ post }: { post: any }) => {
               bgcolor: "rgba(181, 181, 181, 0.765)",
             }}
             id="outlined-basic"
-            variant="outlined"
+            variant="standard"
           />
         </Box>
         <Box>
@@ -102,7 +124,7 @@ const EditPost = ({ post }: { post: any }) => {
             fullWidth
             {...form.register("content")}
             id="outlined-basic"
-            variant="outlined"
+            variant="standard"
           />
         </Box>
 
@@ -130,6 +152,7 @@ const EditPost = ({ post }: { post: any }) => {
           Edit
         </Button>
       </Box>
+      {showSnack && <SuccessResponse message="Post successfully edited" />}
     </Box>
   );
 };
